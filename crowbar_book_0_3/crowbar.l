@@ -78,7 +78,7 @@ increment_line_number(void)
     BEGIN STRING_LITERAL_STATE;
 }
 <INITIAL>[ \t] ;
-<INITIAL>\n {increment_line_number();}
+<INITIAL>(\r)?\n {increment_line_number();}
 <INITIAL>#     BEGIN COMMENT;
 <INITIAL>.      {
     char buf[LINE_BUF_SIZE];
@@ -94,7 +94,7 @@ increment_line_number(void)
                       STRING_MESSAGE_ARGUMENT, "bad_char", buf,
                       MESSAGE_ARGUMENT_END);
 }
-<COMMENT>\n     {
+<COMMENT>(\r)?\n     {
     increment_line_number();
     BEGIN INITIAL;
 }

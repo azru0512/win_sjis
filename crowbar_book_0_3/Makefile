@@ -23,9 +23,9 @@ INCLUDES = \
 $(TARGET):$(OBJS)
 	cd ./memory; $(MAKE);
 	cd ./debug; $(MAKE);
-	$(CC) $(OBJS) -o $@ -lm -lmsvcp60
+	$(CC) $(OBJS) -o $@ -lm
 clean:
-	rm -f *.o lex.yy.c y.tab.c y.tab.h *~
+	rm -f *.o lex.yy.c y.tab.c y.tab.h y.output crowbar *~
 y.tab.h : crowbar.y
 	bison --yacc -dv crowbar.y
 y.tab.c : crowbar.y
